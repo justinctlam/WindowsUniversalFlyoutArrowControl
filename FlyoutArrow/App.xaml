@@ -1,0 +1,56 @@
+﻿<Application
+    x:Class="FlyoutArrow.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FlyoutArrow"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <Style x:Key="FlyoutArrowStyle" TargetType="Polygon">
+            <Setter Property="Fill" Value="White" />
+        </Style>
+        <Style x:Key="FlyoutArrowPresenterStyle" TargetType="FlyoutPresenter">
+            <!-- Changed the Padding from {ThemeResource FlyoutContentThemePadding} to 0 -->
+            <Setter Property="Padding" Value="0" />
+            <!-- Changed the background from {ThemeResource SystemControlBackgroundChromeMediumLowBrush} to Transparent -->
+            <Setter Property="Background" Value="Transparent"/>
+            <!-- Changed the BorderThickness from {ThemeResource FlyoutBorderThemeThickness} to 0 -->
+            <Setter Property="BorderThickness" Value="0"/>
+            <!-- Changed the Template -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="FlyoutPresenter">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="ScrollViewer"
+                                ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                                HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                AutomationProperties.AccessibilityView="Raw">
+                                <Canvas x:Name="ControlCanvas"
+                                        Background="Transparent">
+                                        <ContentPresenter x:Name="Content"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    <Polygon x:Name="Arrow"/>
+                                    <Line x:Name="ArrowOutlineLeft"
+                                          Stroke="Black"/>
+                                    <Line x:Name="ArrowOutlineRight"
+                                          Stroke="Black"/>
+                                </Canvas>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+
+</Application>
